@@ -1,0 +1,71 @@
+﻿@model IEnumerable<WebApplication11.Models.ProductModel>
+
+@{
+    ViewData["Title"] = "GetCart";
+}
+
+<table class="m-2 justify-content-center">
+
+    @if (Model.Count() == 0)
+    {
+        <h3>Cart</h3>
+        <hr />
+        <div class="alert alert-info" role="alert">
+            No item(s) in the cart yet.
+        </div>
+    }
+    @foreach (var item in Model)
+    {
+
+
+        <tbody class=" border-bottom m-5">
+            <tr>
+                <td class="col-sm-4  ">
+                    <img src="@Url.Content("~/Uploads/" +item.ProfilePicture)" class="img-fluid w-25" alt="Error" />
+                </td>
+                <td class="col-sm-4">
+                    <div>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </div>
+                </td>
+                <td class="col-sm-4">
+                    $@Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td class="col-sm-4">
+                    <div>
+                        <a asp-action="Delete" asp-route-id="@item.Id">
+                            <i class="fs-3 bi bi-trash-fill text-secondary"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+
+
+        </tbody>
+
+    }
+
+</table>
+<div class="row">
+    @*<div class="col-sm-12">*@
+    <div class="col-sm-4">
+        <a asp-controller="ProductUser" asp-action="Index" class="btn btn-outline-secondary">
+            <i class="bi bi-cart-plus"></i>
+            Continue Shopping
+        </a>
+    </div>
+
+
+    @if (ViewBag.list != 0)
+    {
+
+        <div class="col-sm-4 text-center">
+            <a asp-controller="ProductUser" asp-action="EmptyCart" class="btn btn-outline-secondary"><i class="bi bi-cart3"></i>Empty Cart</a>
+        </div>
+        <div class="col-sm-4 text-end">
+            <a asp-controller="ProductAdmin" asp-action="ProceedToCheckout" class="btn btn-outline-secondary"><i class="bi bi-cart-check"></i>Proceed TO Checkout</a>
+        </div>
+    }
+
+    @*</div>*@
+</div>
