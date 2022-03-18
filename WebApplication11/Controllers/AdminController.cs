@@ -187,6 +187,12 @@ namespace WebApplication11.Controllers
             return RedirectToAction("EditRole", new { Id = roleId });
         }
 
+        [HttpGet]
+        public IActionResult ListRoles()
+        {
+            var roles = roleManager.Roles;
+            return View(roles);
+        }
         //public IActionResult AssignRole()
         //{
         //    return View();
@@ -214,11 +220,6 @@ namespace WebApplication11.Controllers
         //    return View(await _contaxt.aspnetroles.ToListAsync());
         //}
 
-        [HttpGet]
-        public IActionResult ListRoles()
-        {
-            var roles = roleManager.Roles;
-            return View(roles);
-        }
+
     }
 }
