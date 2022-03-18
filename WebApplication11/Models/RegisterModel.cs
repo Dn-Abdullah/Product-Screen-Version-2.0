@@ -3,7 +3,9 @@
 namespace WebApplication11.Models
 {
     public class RegisterModel
+
     {
+        public string Id { get; set; }
         [Required]
         [EmailAddress]
         public string Email { get; set; }

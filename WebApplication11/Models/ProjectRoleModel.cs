@@ -2,7 +2,7 @@
 {
     public class ProjectRoleModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string RoleName { get; set; }
     }
 }

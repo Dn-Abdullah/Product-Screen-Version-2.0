@@ -18,8 +18,11 @@ namespace WebApplication11.Data
         }
         public DbSet<ProductModel> ProductModels { get; set; }
         public DbSet<CartDataModel> Carts { get; set; }
-             
-       // public DbSet<CartProductModel> cartProductModels { get; set; }                      
+        public DbSet<UserRoleModel> aspnetuserroles { get; set; }
+        public DbSet<MembersModel> aspnetusers { get; set; }  
+        public DbSet<ProjectRoleModel> aspnetroles { get; set; }
+
+        // public DbSet<CartProductModel> cartProductModels { get; set; }                      
 
 
 

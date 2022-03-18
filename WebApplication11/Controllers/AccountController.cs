@@ -6,6 +6,7 @@ using WebApplication11.ViewModels;
 
 namespace WebApplication11.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class AccountController : Controller
     {
   
@@ -59,6 +60,7 @@ namespace WebApplication11.Controllers
 
                 if (result == 1)
                 {
+                    
 
                     return RedirectToAction("Index", "ProductAdmin");
                 }

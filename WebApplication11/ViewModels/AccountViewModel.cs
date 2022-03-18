@@ -29,6 +29,7 @@ namespace WebApplication11.ViewModels
 
             if (result.Succeeded)
             {
+              //  _userManager.AddToRoleAsync(user, "Administrator");
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
                 return 1;
