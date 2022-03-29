@@ -7,7 +7,7 @@ using WebApplication11.Models;
 
 namespace WebApplication11.Controllers
 {
-    // [Authorize(Roles ="Administrator")]
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
 
     {
@@ -33,12 +33,13 @@ namespace WebApplication11.Controllers
         //    return View(await _contaxt.aspnetusers.ToListAsync());
 
         //}
-
+ 
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
+       
         public async Task<IActionResult> Create(ProjectRoleModel role)
         {
             var RoleExist = await roleManager.RoleExistsAsync(role.RoleName);

@@ -49,6 +49,7 @@ namespace WebApplication11.ViewModels
                 }
                 return 0;
 
+
         }
 
         public async Task<bool> AdminLogout()

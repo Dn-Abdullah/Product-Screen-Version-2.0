@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,7 +27,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor02">
-     @if (User.Identity.IsAuthenticated)
+     @if(signInManager.IsSignedIn(User) && User.IsInRole("Operator"))
                     {
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
@@ -35,9 +37,38 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
                             </li>
+                           
+                        </ul>
+                    }
+                    else if(signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="ListRoles">Manage Roles</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Register">Register New User</a>
                                </li>
+                        </ul>
+                    }
+                    else if(signInManager.IsSignedIn(User) && User.IsInRole("User"))
+                    {
+                         <ul class="navbar-nav flex-grow-1">
+                            <li>
+                                    <a class="nav-link" asp-controller="ProductUser" asp-action="GetCart" >
+                                        <i class="bi bi-cart3"></i>
+                                        Cart
+                                    </a>
+                                 </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                           
                         </ul>
                     }
                     else
@@ -52,6 +83,9 @@
                                         Cart
                                     </a>
                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                               </li>
                             @*  <li class="nav-item">
                                 <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Register">Register</a>
                                 </li>*@

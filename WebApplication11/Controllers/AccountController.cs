@@ -6,7 +6,7 @@ using WebApplication11.ViewModels;
 
 namespace WebApplication11.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+ 
     public class AccountController : Controller
     {
   
@@ -51,7 +51,8 @@ namespace WebApplication11.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginModel user)
+        
+        public async Task<IActionResult> Login(LoginModel user) //, string ReturnUrl)
             
         {
             if (ModelState.IsValid)
@@ -60,9 +61,14 @@ namespace WebApplication11.Controllers
 
                 if (result == 1)
                 {
-                    
-
-                    return RedirectToAction("Index", "ProductAdmin");
+                    //if (!string.IsNullOrEmpty(ReturnUrl))
+                    //{
+                    //    return Redirect(ReturnUrl);
+                    //}
+                    //else
+                    //{
+                        return RedirectToAction("Index", "ProductUser");
+                    //}
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
@@ -75,7 +81,7 @@ namespace WebApplication11.Controllers
         {
             await _AccountRepository.AdminLogout();
 
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Account");
         }
 
 

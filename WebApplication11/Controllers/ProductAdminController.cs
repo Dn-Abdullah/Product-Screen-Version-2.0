@@ -16,7 +16,7 @@ using System.Security.Claims;
 namespace WebApplication11.Controllers
 {
 
-    [Authorize]
+    [Authorize(Roles = "Operator")]
 
     public class ProductAdminController : Controller
     {
